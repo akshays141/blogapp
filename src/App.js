@@ -20,6 +20,11 @@ function App() {
 
   const [loggedInUser, setLoggedInUser] = useState({});
 
+  const [userName, setUserName] = useState("");
+
+  useEffect(()=>{
+    setUserName(loggedInUser.name)
+  }, [loggedInUser])
 
   useEffect(() => {
     
@@ -32,7 +37,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar setCurrentUser={setCurrentUser} setSearchQuery={setSearchQuery} loggedInUser={loggedInUser} />
+        <NavBar setCurrentUser={setCurrentUser} setSearchQuery={setSearchQuery} userName={userName} />
         <div className="App">
           <Routes>
             <Route path='/' element={<Home searchQuery={searchQuery}/>} />
@@ -43,8 +48,8 @@ function App() {
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>}/>
             <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
-            <Route path='/profile' element={currentUser? <Profile/>: <Login/>} />
-            <Route path="/settings" element={currentUser? <Settings />:<Login /> } />
+            <Route path='/profile' element={currentUser? <Profile/>: <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
+            <Route path="/settings" element={currentUser? <Settings />:<Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/> } />
           </Routes>
         </div>
 

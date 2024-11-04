@@ -1,24 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./NavBar.css";
 import blog_logo from "../Assets/blog_logo.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import profile_img from '../Assets/profile_img.png';
 import { VscAccount } from "react-icons/vsc";
 import { AiFillSetting } from "react-icons/ai";
 import { IoHelpSharp } from "react-icons/io5";
 import { LuLogOut } from "react-icons/lu";
 
-const NavBar = ({ setCurrentUser, setSearchQuery, loggedInUser }) => {
-  const navigate = useNavigate();
+const NavBar = ({ setCurrentUser, setSearchQuery, userName }) => {
+
   const menuRef = useRef();
   const listRef = useRef();
 
   const [showProfile, setShowProfile] = useState(false);
-  const [userName, setUserName] = useState("");
 
-  useEffect(()=>{
-    setUserName(loggedInUser.name);
-  },[loggedInUser])
 
 useEffect(()=>{
 
@@ -48,7 +44,8 @@ const showProfileCard = () =>{
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     setCurrentUser(false);
-    navigate("/login");
+    setShowProfile(false);
+   
   };
 
   return (
@@ -68,9 +65,6 @@ const showProfileCard = () =>{
             </li>
             <li>
               <NavLink to="/write">WRITE</NavLink>
-            </li>
-            <li className="logout" onClick={handleLogout}>
-              LOGOUT
             </li>
           </ul>
         </div>
@@ -96,7 +90,7 @@ const showProfileCard = () =>{
             <li><Link to='/profile' onClick={handleLinkClick}><VscAccount />Profile</Link></li>
             <li><Link to='/settings' onClick={handleLinkClick}><AiFillSetting />Settings</Link></li>
             <li><Link onClick={handleLinkClick}><IoHelpSharp />Helps</Link></li>
-            <li><Link onClick={handleLinkClick}><LuLogOut />Logout</Link></li>
+            <li><Link to='/login' onClick={handleLogout}><LuLogOut />Logout</Link></li>
           </div>
       </nav>
     </div>
