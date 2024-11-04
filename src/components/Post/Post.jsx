@@ -40,9 +40,7 @@ export default function Post({searchQuery}) {
         fugiat, reprehenderit praesentium blanditiis quos cupiditate ratione
         atque, exercitationem quibusdam, reiciendis odio laboriosam?
       </p>
-    </div>
-      
-      
+    </div>      
     })
     
     }

@@ -11,6 +11,7 @@ import Login from './Pages/LoginPage/Login';
 import Settings from './Pages/Settings/Settings';
 import { useEffect, useState } from 'react';
 import Profile from './Pages/Profile/Profile';
+import Help from './Pages/Help/Help';
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
             <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path='/profile' element={currentUser? <Profile/>: <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
             <Route path="/settings" element={currentUser? <Settings />:<Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/> } />
+            <Route path='/help' element={<Help/>} />
           </Routes>
         </div>
 

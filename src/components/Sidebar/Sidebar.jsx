@@ -22,7 +22,7 @@ export default function Sidebar() {
             <Link className="link" to="/posts?cat=Life">
               Life
             </Link>
-          </li>
+          </li> 
           <li className="sidebarListItem">
             <Link className="link" to="/posts?cat=Music">
               Music
