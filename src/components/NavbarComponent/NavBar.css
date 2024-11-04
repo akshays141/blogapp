@@ -40,28 +40,145 @@
   color: #fff;
 }
 
+.nav-list .logout{
+  font-size: 20px;
+  font-weight: 300;
+  color: #fff;
+  cursor: pointer;
+}
+
+
 .search{
     display: flex;
     justify-content: center;
     align-items: center;
     background: #fff;
-    padding: 3px;
+    padding: 2px;
     margin-right: 1rem;
     padding-right: 5px;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .search input{
-    height: 2rem;
+    height: 1.2rem;
     width: 100%;
     border: none;
+    border-radius: 20px;
     outline: none;
 }
-.search span{
-   font-size: 30px;
+
+.search button{
+  border: none;
+  background: none;
+}
+
+.search button span{
+   font-size: 25px;
    font-weight: 400;
    cursor: pointer;
 }
+
+.profile-icon{
+  height: 40px;
+  width: 120px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.profile-icon:hover{
+  background: rgb(146, 49, 238);
+}
+
+.profile-icon span{
+  display: block;
+  font-size: 20px;
+  width: 70%;
+}
+
+.profile-icon .profile-image {
+  height: 38px;
+  width: 38px;
+  border-radius: 50%;
+}
+
+.profile-image img{
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+}
+
+.profile-list{
+  height: 40vh;
+  width:160px;
+  list-style: none;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  border:1px solid blueviolet;
+  border-radius: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0);
+  transition: 0.3s ease;
+}
+
+.profile-list::before{
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  transform: rotate(-45deg);
+  background: #fff;   
+}
+
+.profile-list.show{
+ opacity: 1;
+ visibility: visible;
+ transform: translateY(-20px);
+ transition: 0.3s ease;
+}
+
+.profile-list li{
+  display: block;
+  width: 55%;
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.055);
+}
+
+
+.profile-list li:hover{
+ background: rgba(128, 128, 128, 0.123);
+}
+
+.profile-list li:last-child{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.055);
+}
+
+.profile-list li a{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.profile-list li a:hover{
+  color: rgb(197, 22, 31);
+}
+
 
 @media (max-width:900px){
 

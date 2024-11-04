@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Post.css";
+import data_posts from '../Assets/data_posts'
 
-export default function Post({img}) {
+export default function Post({searchQuery}) {
   return (
-    <div className="post">
+    <>
+    {data_posts.filter((post)=>post.category.toLowerCase().includes(searchQuery)).map((post,index)=>{
+     
+      return <div className="post" key={index}>
       <img
         className="postImg"
-        src={img}
+        src={post.image}
         alt=""
       />
       <div className="postInfo">
@@ -23,12 +27,12 @@ export default function Post({img}) {
           </span>
         </div>
         <span className="postTitle">
-          <Link to="/post/abc" className="link">
-            Lorem ipsum dolor sit amet
+          <Link to={`/post/${post.id}`} className="link">
+            {post.title}
           </Link>
         </span>
         <hr />
-        <span className="postDate">1 hour ago</span>
+        <span className="postDate">{post.date}</span>
       </div>
       <p className="postDesc">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda
@@ -37,5 +41,12 @@ export default function Post({img}) {
         atque, exercitationem quibusdam, reiciendis odio laboriosam?
       </p>
     </div>
+      
+      
+    })
+    
+    }
+    </>
   );
+  
 }
