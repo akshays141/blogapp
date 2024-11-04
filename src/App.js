@@ -43,8 +43,8 @@ function App() {
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>}/>
             <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
-            <Route path='/profile' element={<Profile/>} />
-            <Route path="/settings" element={ <Settings /> } />
+            <Route path='/profile' element={currentUser? <Profile/>: <Login/>} />
+            <Route path="/settings" element={currentUser? <Settings />:<Login /> } />
           </Routes>
         </div>
 

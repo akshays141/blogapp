@@ -11,13 +11,19 @@ import { LuLogOut } from "react-icons/lu";
 const NavBar = ({ setCurrentUser, setSearchQuery, loggedInUser }) => {
   const navigate = useNavigate();
   const menuRef = useRef();
+  const listRef = useRef();
 
   const [showProfile, setShowProfile] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  useEffect(()=>{
+    setUserName(loggedInUser.name);
+  },[loggedInUser])
 
 useEffect(()=>{
 
   const closeOpenMenu = (event) =>{
-    if(showProfile && !menuRef.current?.contains(event.target)){
+    if(showProfile && (!menuRef.current?.contains(event.target) && !listRef.current?.contains(event.target))){
       setShowProfile(false);
     }
     
@@ -29,7 +35,11 @@ useEffect(()=>{
     document.removeEventListener('mousedown',closeOpenMenu);
   }
 
-},[showProfile])
+})
+
+const handleLinkClick =() =>{
+setShowProfile(false);
+}
    
 const showProfileCard = () =>{
   setShowProfile(prev => !prev);
@@ -77,16 +87,16 @@ const showProfileCard = () =>{
         </form>
 
         <div className="profile-icon" onClick={showProfileCard} ref={menuRef}>
-          <span>{loggedInUser.name}</span>
+          <span>{userName}</span>
           <div className="profile-image">
             <img src={profile_img} alt="" />
           </div>
         </div>
-        <div className={showProfile?"profile-list show":"profile-list"} >
-            <li><Link to='/profile'><VscAccount /> Profile</Link></li>
-            <li><Link><AiFillSetting />Settings</Link></li>
-            <li><Link><IoHelpSharp />Helps</Link></li>
-            <li><Link><LuLogOut />Logout</Link></li>
+        <div className={showProfile?"profile-list show":"profile-list"} ref={listRef}>
+            <li><Link to='/profile' onClick={handleLinkClick}><VscAccount />Profile</Link></li>
+            <li><Link to='/settings' onClick={handleLinkClick}><AiFillSetting />Settings</Link></li>
+            <li><Link onClick={handleLinkClick}><IoHelpSharp />Helps</Link></li>
+            <li><Link onClick={handleLinkClick}><LuLogOut />Logout</Link></li>
           </div>
       </nav>
     </div>

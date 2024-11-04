@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({setCurrentUser, setLoggedInUser}) {
   const navigate = useNavigate();
 
+const [registeredUser, setRegisteredUser]= useState("")
 
+  useEffect(()=>{
+    setRegisteredUser(JSON.parse(localStorage.getItem("user")));
+  },[registeredUser]);
 
   const [input, setInput] = useState({
     email: "",
@@ -15,7 +19,7 @@ export default function Login({setCurrentUser, setLoggedInUser}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const registeredUser = JSON.parse(localStorage.getItem("user"));
+    
     if (
       input.email === registeredUser.email &&
       input.password === registeredUser.password
