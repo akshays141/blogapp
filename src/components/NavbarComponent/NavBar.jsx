@@ -49,13 +49,9 @@ const showProfileCard = () =>{
 
 
   function handleLogout(){
-    const isLoggedIn = localStorage.removeItem("isLoggedIn");
-    if(!isLoggedIn){
-      document.getElementById("usernameDisplay").innerText ="";
-      setCurrentUser(false);
-      setShowProfile(false);
-     
-    }
+    localStorage.removeItem("isLoggedIn");
+    setCurrentUser(false);
+    setShowProfile(false);
    
   };
 

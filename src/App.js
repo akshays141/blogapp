@@ -28,6 +28,9 @@ function App() {
     if(user && currentUser===true){
       setUserName(user.name);
     }
+    else{
+      setUserName("");
+    }
     
   }, [currentUser]);
 
@@ -52,9 +55,9 @@ function App() {
             <Route path="/login" element={currentUser ? <Home /> : <Login setCurrentUser={setCurrentUser}  />}/>
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>}/>
-            <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} />} />
-            <Route path='/profile' element={currentUser? <Profile/>: <Login setCurrentUser={setCurrentUser} />} />
-            <Route path="/settings" element={currentUser? <Settings />:<Login setCurrentUser={setCurrentUser} /> } />
+            <Route path="/write" element={currentUser ? <Write /> : <Login />} />
+            <Route path='/profile' element={currentUser? <Profile/>: <Login  />} />
+            <Route path="/settings" element={currentUser? <Settings />:<Login  /> } />
             <Route path='/help' element={<Help/>} />
           </Routes>
         </div>

@@ -6,16 +6,15 @@ import { useNavigate } from "react-router-dom";
 export default function Login({setCurrentUser}) {
   const navigate = useNavigate();
 
-const [registeredUser, setRegisteredUser]= useState("")
+const [registeredUser, setRegisteredUser]= useState("");
 
-  useEffect(()=>{
-    setRegisteredUser(JSON.parse(localStorage.getItem("user")));
-    const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
-    if(setRegisteredUser && isLoggedIn===true){
-      
-    }
-  },[registeredUser]);
 
+useEffect(()=>{
+  setRegisteredUser(JSON.parse(localStorage.getItem("user")));
+
+}, [])
+
+  
   const [input, setInput] = useState({
     email: "",
     password: "",
