@@ -8,6 +8,8 @@ export default function SinglePost({id}) {
     return <p>Post not found</p>;
   }
 
+ 
+
   return (
     <div className="singlePost">
       
@@ -32,6 +34,9 @@ export default function SinglePost({id}) {
                 {post.author}
               </Link>
             </b>
+          </span>
+          <span>
+            <b className="subscribe" >Subscribe</b>
           </span>
           <span>Posted on: {post.date}</span>
         </div>

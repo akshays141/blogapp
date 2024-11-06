@@ -3,13 +3,17 @@ import "./Login.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({setCurrentUser, setLoggedInUser}) {
+export default function Login({setCurrentUser}) {
   const navigate = useNavigate();
 
 const [registeredUser, setRegisteredUser]= useState("")
 
   useEffect(()=>{
     setRegisteredUser(JSON.parse(localStorage.getItem("user")));
+    const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn'));
+    if(setRegisteredUser && isLoggedIn===true){
+      
+    }
   },[registeredUser]);
 
   const [input, setInput] = useState({
@@ -25,7 +29,6 @@ const [registeredUser, setRegisteredUser]= useState("")
       input.password === registeredUser.password
     ) {
       
-      setLoggedInUser(registeredUser);
       localStorage.setItem('isLoggedIn',JSON.stringify(true));
       setCurrentUser(true);
       navigate("/");

@@ -16,6 +16,11 @@ const NavBar = ({ setCurrentUser, setSearchQuery, userName }) => {
   const [showProfile, setShowProfile] = useState(false);
 
 
+  useEffect(()=>{
+    const usernameDisplay = document.getElementById("usernameDisplay");
+    usernameDisplay.innerText = `${userName}`; 
+  })
+
 useEffect(()=>{
 
   const closeOpenMenu = (event) =>{
@@ -41,12 +46,20 @@ const showProfileCard = () =>{
   setShowProfile(prev => !prev);
 }
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setCurrentUser(false);
-    setShowProfile(false);
+
+
+  function handleLogout(){
+    const isLoggedIn = localStorage.removeItem("isLoggedIn");
+    if(!isLoggedIn){
+      document.getElementById("usernameDisplay").innerText ="";
+      setCurrentUser(false);
+      setShowProfile(false);
+     
+    }
    
   };
+
+  
 
   return (
     <div className="header">
@@ -81,7 +94,7 @@ const showProfileCard = () =>{
         </form>
 
         <div className="profile-icon" onClick={showProfileCard} ref={menuRef}>
-          <span>{userName}</span>
+          <span id="usernameDisplay"></span>
           <div className="profile-image">
             <img src={profile_img} alt="" />
           </div>

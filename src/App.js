@@ -19,13 +19,17 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(false);
 
-  const [loggedInUser, setLoggedInUser] = useState({});
+  // const [loggedInUser, setLoggedInUser] = useState({});
 
   const [userName, setUserName] = useState("");
 
   useEffect(()=>{
-    setUserName(loggedInUser.name)
-  }, [loggedInUser])
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user && currentUser===true){
+      setUserName(user.name);
+    }
+    
+  }, [currentUser]);
 
   useEffect(() => {
     
@@ -45,12 +49,12 @@ function App() {
             <Route path="/posts" element={<Home searchQuery={searchQuery}/>} />
             <Route path="/post/:id" element={<Single/>} />
             <Route path="/register" element= {currentUser ? <Home/> : <Register/>} />
-            <Route path="/login" element={currentUser ? <Home /> : <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser} />}/>
+            <Route path="/login" element={currentUser ? <Home /> : <Login setCurrentUser={setCurrentUser}  />}/>
             <Route path='/about' element={<About/>} />
             <Route path='/contact' element={<Contact/>}/>
-            <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
-            <Route path='/profile' element={currentUser? <Profile/>: <Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/>} />
-            <Route path="/settings" element={currentUser? <Settings />:<Login setCurrentUser={setCurrentUser} setLoggedInUser={setLoggedInUser}/> } />
+            <Route path="/write" element={currentUser ? <Write /> : <Login setCurrentUser={setCurrentUser} />} />
+            <Route path='/profile' element={currentUser? <Profile/>: <Login setCurrentUser={setCurrentUser} />} />
+            <Route path="/settings" element={currentUser? <Settings />:<Login setCurrentUser={setCurrentUser} /> } />
             <Route path='/help' element={<Help/>} />
           </Routes>
         </div>

@@ -50,6 +50,12 @@
   .singlePostAuthor{
     margin-left: 5px;
   }
+
+  .subscribe{
+    position: absolute;
+    left: 150px;
+    cursor: pointer;
+  }
   
   .singlePostDesc {
     color: #666;
